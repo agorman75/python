@@ -1,0 +1,755 @@
+PYTHON 3
+_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
+ODD MATH OPERATORS:
+// 		= 	Integer division. Division without a remainder aka answers with an intger. 10 // 3 = 3
+** 		= 	exponent
+% 		modulo = remainder operator. take one number and divide other without becoming fractional and provide the remainder. Good to figure out if number is even or odd by modulo by an even or odd number
+			10 % 3 = 1. 25 % 4 = 1. 16 % 2 = 0.
+
+STANDARD OPERATORS:
+-	=	Subtraction
++	=	Addition
+*	=	Multiplication
+/	=	Division
+
+Convert float to int = print(int(1.432432 + 2)) = 3. print(int(1.732432 + 2)) = 3
+_________________________________________________________________________________________________________
+VARIABLES AND STRINGS:
+Variables are like containers that hold numbers, booleans, strings, and more. Must be assigned before use. Can assign at the same time. Must begin with a letter or underscore and is case sensitive.
+A variable in all capital letters is a constant. Variables that begin and end with two underscores are "dunder" for (double underscore) which are private or left alone.
+	all, at, once = 5, 10, 15
+
+None is to be used to store in a variable that doesn't have an initial value, but will later in the code
+	name = "Matt"
+	age = 30
+	child = None
+
+_________________________________________________________________________________________________________
+DATA TYPES (so far):
+bool 	= 	True or Falserefgbhnty
+str 	= 	a sequence of unicode characters "Andrew"
+list	=	an ordered sequence of values of other data types [1,2,3] or ["a","b","c"]
+dict	=	a collection of key: values {"first_name": "Andrew", "last_name": "Gorman"}
+
+_________________________________________________________________________________________________________
+STRING ESCAPE SEQUENCES:
+All begin with a \
+	\n
+	\\
+	hello "sir \"good day""
+
+_________________________________________________________________________________________________________
+STRING CONCATENATION:
+Combining multiple strings together. In Python this can be done with the '+' operator.
+	str_one = "your"
+	str_two = "face"
+	str_three = str_one + " " + str_two  #  your face. " " adds the space.
+
+'+=' operator can be used to update
+	str_one = "ice"
+	str_one += "cream"
+	print(str_one) = ice cream
+
+Old method to concatonate:
+	name = "Andrew"
+	name = name + " Gorman"
+Above method is superior.
+
+For numbers:
+	str_one = 99
+	str_one += 1
+	str_one now prints 100
+Can also subtract by same method
+	str_one -= 1
+Also with addition, and other math operator
+	str_one *= 1
+	str_one now prints 99 because it times 1 to the initial string value
+
+_________________________________________________________________________________________________________
+FORMATTING STRINGS:
+f-string turns a value into a string. Can interpolate an integer as a string.
+	x = 10
+	formatted = f"I have seen {x} birds today"
+
+	Outdated string format. => .format method:
+	x = 10
+	formatted = "I have seen {} birds today".format(10)
+
+	Deprecated. % operator method:
+	x = 10
+	formatted = "I have seen %d birds today" % (x)
+
+_________________________________________________________________________________________________________
+STRINGS AND INDEXES:
+	"lol"[0] = 'l'
+	name = "Chuck"
+	name[0] = C
+	name[1] = h
+	name[-5] = C
+
+_________________________________________________________________________________________________________
+CONVERTING DATA TYPES:
+Can explicitly convert variables by using the name of the built in type as a function.
+	d = 12.435334
+	integer = int(d) = 12
+
+	my_list = [1,2,3]
+	my_list_as_a_string = str(my_list) = "[1,2,3]"
+
+_________________________________________________________________________________________________________
+USER DATA:
+	data = input("What is your favorite color?")
+	print("you said " + data)
+
+	print("What is your favorite color?")
+	data = input()
+	print("you said " + data)
+
+USER DATA + CONVERTING A DATA TYPE:
+	print("How many kilometers did you cycle today?")
+	kms = input()
+	miles = float(kms)/1.60934
+	miles = round(miles, 2) < -- rounding the current value of 'miles' to two decimal places
+	print(f"That is equal to {miles} miles "")
+
+_________________________________________________________________________________________________________
+CONDITIONALS:
+Conditional logic using if statements represents differernt paths a program can take based on some type of comparison of input.
+
+	if some condition is True:
+		do something
+	elif some other condition is True:
+		do something
+	else:
+		do something
+
+_________________________________________________________________________________________________________
+TRUTHINESS:
+All conditional checks resolve to True or False.
+Values can be called that will resolve to True "Truthy" or values that will resolve to False "Falsy"
+Besides False conditional checks, otehr things that are naturally falsy include: empty objects, empty strings, None, and zero.
+
+If any string has something in it = 1 and True. If the string has nothing in it such as "" then it is false.
+
+	if 0:
+		print("yay!")
+	Nothing is printed
+
+	If 1:
+		print("YES!")
+	YES! is printed
+
+_________________________________________________________________________________________________________
+COMPARISON OPERATORS:
+	==		Truthy if 'a' has the same value as 'b'					a == b 		True
+	!=		Truthy if 'a' does NOT have the same value as 'b'		a != b 		False
+	>		Truthy if 'a' is greater than 'b'						a > b 		False
+	<		Truthy if 'a' is less than 'b'							a < b 		False
+	>= 		Truthy if 'a' is greater than or equal to 'b'			a >= b 		True
+	<= 		Truthy if 'a' is less than or equal to 'b'				a <= b 		True
+
+_________________________________________________________________________________________________________
+LOGICAL OPERATORS:
+The following can be used to make Boolean logic comparisons or statements:
+	and 	Truthy if both 'a' AND 'b' are True 					if a and b:
+			(logical conjunction)										print(c)
+	or 		Truthy if either 'a' OR 'b' are True 					if am_tired or is_bedtime:
+			(logical disjunction)										print("go to sleep")
+	not 	Truthy if the opposite of 'a' is True 					if not is_weekend:
+			(logical negation). Good for flipping						print("go to work")
+			statements/code.
+
+	if not ((age >= 2 and age =< 8) or age >= 65):
+		print("hi")
+	else:
+		print("no")
+
+		(age >= 2 and age =< 8) is false, but true because of the 'not' operator, and the rules of parentheses applies.
+			then checks (or age >= 65)
+
+	When using 'not' negative numbers are just like regular numbers. Not (True) is false.
+		Example: a = -1
+				 not a
+				 The above is false because -1 is True, but the not operator turns the statement False. 
+
+_________________________________________________________________________________________________________
+IS VS '=='
+
+'==' is checking the values to see if they are the same
+'is' is checking to see if something is stored in the same place in memory
+
+	a = 1
+	a == 1 True
+	a is 1 True
+
+	a = [1,2,3]
+	b = [1,2,3]
+	a == b True  < --- Both have the same value
+	a is b False < --- Both do not have the same data stored in memory
+
+In order to make the above array True using 'is' the variable needs to be allocated the same information that is stored in memory.
+	c = b
+	b is c True
+
+For lists, a bracket is created in memory which causes 'a is b' to be false. In addition, a is pointing to a, and b is pointing to b.
+In order for 'a is b' is True, you have to create a new variable.
+
+	clone = a
+	a is clone = True
+
+_________________________________________________________________________________________________________
+NESTED CONDITIONALS:
+
+Example:
+	age = input("how old")
+	if age:
+		age = int(age)
+		if age >= 21
+			print("adult")
+		elif age >= 18:
+			print("wrist band to enter")
+		else:
+			print("too young")
+	else:
+		print("enter age")
+
+_________________________________________________________________________________________________________
+LOOPS:
+'for' and 'while'
+
+Iterator - an object that can be iterated upon, meaning that you can traverse through all the values. (for x in list:) x will iterate over each letter in "list" and cease when x has iterated over all of the letters
+Iterable Object - a type of collection item. Eg: list of numbers, string of characters, range.
+
+To store odd numbers in a variable in a for loop using range
+	for i in range(11,21,2):
+		x += i
+
+	total = 0
+	for num in range(101):
+		total = total + num
+	print(total)
+
+_________________________________________________________________________________________________________
+WHILE LOOP:
+While loops continue to execute while a certain condition is truthy, and will end when they become falsy. Potential to accidently issue a continuous loop.
+
+	i = 1
+	while i < 6:
+		i += 1
+		print(i)
+
+While loop for user input. Must have an existing variable. In this case user_response by defailt exists by setting it to None.
+	user_response = None
+	while user_response != "please":
+		user_response = input("Say the magic word")
+
+	name = ''
+	while name != 'your name':
+		print("Please type 'your name'")
+		name = input()
+	print("Thank you")
+
+	name = ''
+	while True:
+		print("Please type 'your name'")
+		name = input()
+		if name == 'your name':
+			break
+	print("Thank you")
+
+	spam = 0
+	while spam < 5:
+		spam = spam + 1
+		if spam == 3:
+			continue
+		print("spam is " + str(spam))
+
+		Output is:
+		spam is 1
+		spam is 2
+		spam is 4
+		spam is 5
+
+		3 is never printed because the continue statement starts the code at the beginning again, but at the next interation
+
+
+_________________________________________________________________________________________________________
+RANGES:
+Commonly used for looping a specific number of times in 'for' loops.
+
+Syntax - range(start,stop,step)
+
+	range(7) = 0 through 6
+	range(1,8) = 1 through 7
+	range(1,10,2) = odds from 1 through 10
+	range(7,0,-1) = list integers from 7 through 1
+
+	for num in range(10):
+		print(num) <---- lists 0 through 9
+
+	print("My name is")
+	for i in range(5):
+		print("Jimmy five times " +str(i))
+
+_________________________________________________________________________________________________________
+CONTROLLED EXIT (BREAK):
+The keyword "break" breaks out of while loops at any point.
+
+The below example is a continuous loop, but the loops breaks with the "break" exit
+	while True:
+		command = input("Type 'exit' to exit: ")
+		if (command == "exit"):
+			break
+
+	for x in range(1,101):
+		print(x)
+		if x == 3:
+			break
+
+_________________________________________________________________________________________________________
+LISTS:
+List is a collection or grouping of items. lists = []
+The first item in a list is position 0 aka index0
+
+	numbers = [1,2,3,4]
+	for p in numbers:
+		print(p)
+
+	tasks = ["say hi", "go to store", "wave"]
+	OR -
+	task1 = "say hi"
+	task2 = "go to store"
+	task3 = "wave"
+	tasks = [task1, task2, task3]
+
+Built in function for list is len. len(tasks) = 3. Len() can only be used on lits and strings.
+
+List range:
+	task = list(range(1,20))
+	OR
+	r = range(1,20)
+	list(r) prints out the range 1 - 19
+
+colors = ["green", "blue", "yellow"]
+To store a specific color in the list:
+store_color = colors[1] 	which will store the color blue in the variable store_color while the list remains untouched.
+Can go in reverse as well. colors[-1] = "yellow"
+
+Check if a value is in a list:
+	friends = ["John", "James", "Jackie"]
+	"John" in friends = True
+	"Andrew" in friends = False
+
+To alter list above:
+	friends[0] = "Johnny"
+	friends now is ["Johnny", "James", "Jackie"]
+
+	friends = ["Johnny", "James", "Jackie"]
+	o = ""
+	for x in friends:
+		o += x
+	print(o)
+
+To iterate over lists:
+	num = [1,2,3,4]
+	i = 0
+	while i < len(num):
+		print(num[i])
+		i += 1
+
+	color = ["blue", "green", "orange"]
+	index = 0
+	while index < len(color):
+		print(f"{index}: {color[index]"})
+		index += 1
+_________________________________________________________________________________________________________
+LIST METHODS:
+
+append - add an item to the end of the list
+extend - add to the end of a list, all of the values that are passed
+	list = [1,2,3]
+	list.extend([4,5,6])
+	print(list) = [1,2,3,4,5,6]
+
+insert - insert an item at a given position
+	list = [1,2,3]
+	list.insert(2,"Hi")
+	print(list) = [1,2, "Hi", 3]
+
+	list.insert(len(list), "LAST")
+	print(list) = [1,2,3, "LAST"]
+
+
+Removing items:
+
+clear - remove all items from the list. The list is not gone, but it is empty. Example: 'list' still exists, but the contents within 'list' are cleared.
+	list =[1,2,3]
+	list.clear()
+	print(list) = []
+
+pop - remove the item at the given position in the list, and return it. If no index is specified, removes & returns last item in the list. However, you can capture the item that has been popped out.
+	list = [1,2,3]
+	list.pop()
+	print(list) = [1,2]
+
+	list = [1,2,3]
+	list.pop(1)
+	print(list) = [1,3]
+
+Capturing the item that pops out
+	list = [1,2,3]
+	captured_item = list.pop()
+	print(captured_item) = [3]
+
+remove - remove the first item from the list whose value is x. Throws a ValueError if the item is not found.
+	list = [1,2,3,3,3,4]
+	list.remove(3)
+	print(list) = [1,2,3,3,4]
+
+index - returns the index of the specified item in the list
+	list = [1,2,3]
+	list.index(1) = 0
+
+count:
+	list = [1,2,3]
+	list.count(1) = 1
+
+reverse - reverses the elements of the list (in-place)
+	list = [1,2,3]
+	list.reverse()
+	print(list) = [3,2,1]
+
+sort:
+	list = [2,5,1,4,3]
+	list.sort()
+	print(list) = [1,2,3,4,5]
+
+join:
+Need to store change in a variable.
+	words = ["Coding", "Is", "Fun!"]
+	' '.join(words) = 'Coding Is Fun!'
+
+	name = ['Mr', "Steele"]
+	'. '.join(name) = 'Mr. Steele'
+
+
+Slicing:
+Makes new lists using slices of the old list.
+
+Syntax - name_of_list[start:end:step]
+	list = [1,2,3,4]
+	list[1:] = [2,3,4]
+	list[3:] = [4]
+	list[-1:] = [4]
+	list[:-1] = [1,2,3]
+	list[-3:] = [2,3,4]
+	list[:2] = [1,2]
+	list[1:3] = [2,3]
+	list[1:-1] = [2,3]
+
+Stepping
+	list = [1,2,3,4,5,6]
+	list[1::2] = [2,4,6]
+	list[::2] = [1,3,5]
+	list[1::-1] = [2,1]
+	list[:1:-1] = [6,5,4,3]
+	list[2::-1] = [3,2,1]
+
+Modifying portion of list
+	a = [1,2,3,4,5]
+	a[1:3] = ['a', 'b', 'c']
+	print(a) = [1, 'a', 'b', 'c', 4,5]
+
+	l = ['red', 'blue', 'green']
+	a = l[1][::-1]
+	print(a) = eulb
+
+Swapping list values: Needed for shuffling, sorting, algorithms
+	names = ["James", "Michelle"]
+	names[0], names[1] = names[1], names[0]
+	print(names) = ["Michelle", "James"]
+
+_________________________________________________________________________________________________________
+LIST COMPREHENSION:
+Syntax:		[ _ for _ in _ ]
+Example:	nums = [1,2,3]
+			[x*10 for x in nums]
+			= [10, 20, 30]
+
+			[num*10 for num in range(1,6)] = [10,20,30,40,50]
+			[bool(val) for val in [0, [], '']] = [False, False, False]
+
+			numbers = [1,2,3,4,5]
+			string_list = [str(num) for num in numbers]
+			print(string_list) = ['1','2','3','4','5']
+
+numbers = [1,2,3,4,5,6]
+evens = [num for num in numbers if num % 2 == 0]
+odds = [num for num in numbers if % 2 != 0]
+
+[num*2 if num % 2 == 0 else num/2 for num in numbers] = [0.5, 4, 1.5, 8, 2.5, 12]
+
+with_vowels = "This is so much fun!"
+''.join(char for char in with_vowels if char not in "aeiou") = "Ths s s mch fn!"
+
+_________________________________________________________________________________________________________
+NESTED LISTS:
+Used for complex data structures such as matricies, game boards, mazes, rows and columns for visualization, tabulation, and grouping data
+
+	n_l = [[1,2,3], [4,5,6], [7,8,9]
+	n_l[0][-2] = 2
+	n_l[-2][2] = 5
+
+Printing nested lists:
+n_l = [[1,2,3], [4,5,6], [7,8,9]
+for l in n_l:
+	for val in l:
+		print(val)
+
+Nested List Comprehension
+n_l = [[1,2,3], [4,5,6], [7,8,9]
+[[print(val) for val in l] for l in n_l]
+
+b = [[num for num in range(1,4)] for val in range(1,4)] = [[1,2,3], [1,2,3], [1,2,3]]
+
+a = [["X" if num % 2 != 0 else "O" for num in range(1,4)] for val in range(1,4)] = [['X', 'O', 'X'], ['X', 'O', 'X'], ['X', 'O', 'X']]
+
+_________________________________________________________________________________________________________
+DICTIONAIRES:
+A data structure that consists of key value pairs. Use the keys to describe our data and athe values to represent the data.
+	- Used to describe, create, and access dictionary data structures. 
+	- Use built in methods to montidy and copy dictionaries
+	- Iterate over dictionaries using loops and dictionary comprehensions
+	- Compare and contracts dictionaries and lists
+	- Three types: keys, values, and items
+
+	a = dict(name="cat", age=10, location="MA", good_health=True)
+	print(a["name"]) -> need quotes because it is a string
+
+	a = dict(
+    	name="cat", 
+    	age=10, 
+    	location="MA", 
+    	goodhealth=True
+    	)
+	print(x)
+
+Accessing all values in a dictionary - use.values()
+	for v in a.values()
+		print(v) = cat, 10, MA, True
+
+Accessing all keys in a dictionary - use.keys()
+	for v in a.keys()
+		print(v) = name, age, location, goodhealth
+
+To access both values and keys - use.items()
+	for key,value in a.items():
+		print(key,value)
+
+	a = dict(
+	    name="cat", 
+	    age=10, 
+	    location="MA", 
+	    goodhealth=True
+	    )
+	for key,value in a.items():
+	    print(key,value)
+
+	a = dict(
+	    name="cat", 
+	    age=10, 
+	    location="MA", 
+	    goodhealth=True
+	    )
+	for x in a.items():
+	    print(x)
+
+	for k,v in a.items():
+		print(f"key is {k} and value is {v}")
+
+_________________________________________________________________________________________________________
+DICTIONARY METHODS - CLEAR, COPY, FROMKEYS, and GET:
+FROMKEYS - creates key-value pairs from a comma separated values.
+GET - retrieves a key in an object and return 'None' instead of a keyerror if the key does not exist.
+
+	d = dict(
+	    sam=25.0, 
+	    lena=88.99, 
+	    chuck=13.0, 
+	    linus=99.5, 
+	    stan=150.0, 
+	    lisa=50.25, 
+	    harrison=10.0
+	    )
+	  d.clear
+
+	  c = d.copy()
+
+	user = {}.fromkeys(['name', 'score', 'email', 'profile bio'], 'unknown')
+	print(user) = {'name': 'unknown', 'score': 'unknown', 'email': 'unknown', 'profile bio': 'unknown'}
+
+If you add a string to the list such as: user = new_user.fromkeys('phone', 'unknown') the output will be {'p': 'unknown', 'h': 'unknown', 'o': 'unknown', 'n': 'unknown', 'e': 'unknown'}
+as it iterates over the string 'phone' each letter is assigned a key of 'unknown'. Can do the same with range().
+
+	d['sam'] = 25.0
+	d.get('sam') = 25.0
+
+	d.['hello'] = KeyError
+	d.get('hello') = None
+
+	d.get == None
+	True
+
+_________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
+FUNCTION:
+	- A process for executing a task -- a bunch of lines of code which is wrapped up into a package that can be recalled at any point. 
+	- Can accept input and return an output
+	- Useful for exdecuting similar procedures over and over -- stay DRY (Don't Repeat Yourself)
+	- "Abstract away" code for otehr users
+		- Imagine if you had to write the "print()" function for every program you wrote
+	- Outputs whatever value is placed after the return keyword
+	- Pops the function off of the call stack
+
+	Parameter - The variable inside the function
+	Argument - The value passed in the function call
+	Statement - A statement does something like represent an action or command -- print()
+	Expression - A combination of variables, operations, and values that yield a result value. In other words, something that can be reduced to a value -- 1 + 3 or a = 1 + 3
+
+		Parameter and Argument example:
+
+		def hello(name):					<-- name = paramter
+			print("Hello " + name)
+
+		hello("Alice")						<-- Alice = argument	
+		hello("Bob")
+
+example creating a function:
+	def name_of_function():
+		block of runnable code
+
+	def say_hi():
+		print("Hi!")
+
+	say_hi()
+
+Rather than doing extra work like the above example with a print() return, we can use the command 'return' in the function as an output
+The 'return' command exits the function. Anything under the return command does nothing -- such as the print("After return!")
+
+	def sq_rt_7():
+		return 7**2
+		print("After return!")
+
+	result = sq_rt_7()  < ---- this variable will capture the output which can be called in late lines of code
+	print(result)
+
+FUNCTION EXAMPLES:
+
+	- Easy example:
+
+	def div42by(divideby):
+		return 42 / divideby
+	print(div42by(2))
+
+	- Generating events using a range:
+
+	def generate_evens():
+	    return list(range(2,49,2))
+	    
+	print(generate_evens())
+
+	
+	- Generating evens using a list comprehension:
+
+	def generate_evens():
+	    return [x for x in range(1,50) if x % 2 == 0]
+
+
+	- Generating evens using a loop:
+
+	def generate_evens():
+	    result = []
+	    for x in range(1,50):
+	        if x % 2 == 0:
+	            result.append(x)
+	    return result
+
+    
+    - Adding a parameter in the function
+	
+	def square(num):
+		return num * num
+
+	print(square(4))
+	print(square(8))
+
+	
+	- Using f string
+
+	def hello(name):
+		print(f"My name is {name}")
+
+	hello("Andrew")
+
+	
+	- Additonal parameters:
+
+	def multiply(first, second):
+		return first * second
+
+	
+	- Additional parameters with f string:
+
+	def your_name(first_name, last_name):
+		return(f"Your full name is {first_name} {last_name}")
+
+	
+SETTING DEFAULT PARAMETERS:
+
+	Normal:
+	def add(a,b):
+		return a+b
+
+	Default:
+	def add(a=10, b=20)   <--- default parameters are set
+		return a+b
+
+	add() = 30
+	add(1,10) = 11 <--- we specify the paramters here.
+	, but left alone like above, the parameters default
+
+	def math(a,b, fn=add):
+		return fn(a,b)
+
+	def speak(animal='pig'):
+	    noises = {"dog": "woof", "pig": "oink", "duck": "quack", "cat": "meow"}
+	    noise = noises.get(animal)
+	    if noise:
+	        return noise
+	    return "?"
+	print(speak())
+
+_________________________________________________________________________________________________________
+SCOPE:
+	- Code in the global scope cannot use any local variables
+	- Code in a local scope can access global variables
+	- Code in one function's local scope cannot use variables in another local scope
+	- Code in one function's local scope cannot use variables in any other local scope
+
+_________________________________________________________________________________________________________
+ERROR HANDLING WITH TRY/EXCEPT:
+
+	def div42by(divideby):
+		return 42 / divideby
+	print(div42by(0))  < -- produces a "ZeroDivisionError"
+
+	To handle the error:
+
+	def div42by(divideby):
+		try:
+			return 42 / divideby
+		except ZeroDivisionError: 							< ---- This will allow the program to continue running, otherwise the error haults the program from continuing
+			print("Error: You tried to divide by zero.")
+	print(div42by(0))
