@@ -18,7 +18,7 @@ print(f"The number you entered is {j}.")
 
 def fun():
     a = j * 2
-    str(a)
+    # str(a)
     return print(f"The calulation is {a}")
 
 fun()
