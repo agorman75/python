@@ -6,3 +6,4 @@ the_list = ['John', 'Joe', 'Andrew', 'Ted']
 ran = random.randint(0,len(the_list) - 1)
 
 print("Here is the list: " + str(tuple(the_list)),"\n" + str(the_list[ran]) + " was selected.")
+print(f"Here is the list: {', '.join(the_list)} \n{the_list[ran]} was selected.")

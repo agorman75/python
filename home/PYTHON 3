@@ -731,6 +731,15 @@ SETTING DEFAULT PARAMETERS:
 	    return "?"
 	print(speak())
 
+RETURN MISTAKES
+
+	Often do not need to have an else
+
+	def is_odd_number(num):
+		if num % 2 != 0:
+			return True
+		return False
+
 _________________________________________________________________________________________________________
 SCOPE:
 	- Code in the global scope cannot use any local variables
@@ -753,3 +762,12 @@ ERROR HANDLING WITH TRY/EXCEPT:
 		except ZeroDivisionError: 							< ---- This will allow the program to continue running, otherwise the error haults the program from continuing
 			print("Error: You tried to divide by zero.")
 	print(div42by(0))
+
+_________________________________________________________________________________________________________
+DOCSTRINGS:
+
+def say_hello():
+	"""A simple function that returns the string hello"""
+	return "Hello!"
+
+say_hello.__doc__   < ---- This will return the triple quote string
