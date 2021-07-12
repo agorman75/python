@@ -10,7 +10,7 @@ files = os.listdir(path)
 # Print the content of the directory
 def dirz():
     for file in files:
-        if file.endswith(".gz"):
+        if file.endswith(".docx"):
             new_folder = input("Name of new folder\n")
             new1 = path + new_folder
             os.mkdir(new1)
