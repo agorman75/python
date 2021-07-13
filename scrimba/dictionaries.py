@@ -27,7 +27,8 @@ print(movie, "items here")
 # del movie['year']
 year = movie.pop('year')
 print(year)
-print(movie.keys())
+print("This is the normal keys print out: ", movie.keys())
+print("This is the keys list: ", ", ".join(list(movie.keys())))
 print(movie.values())
-print(movie.items()) #printed as a tuples
+print(list(movie.items())) #printed as a tuples
 
