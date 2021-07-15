@@ -13,3 +13,4 @@
 
 person = [["name", "Jared"], ["job", "Musician"], ["city", "Bern"]]
 print({k:v for k,v in person})
+print(dict(person))
