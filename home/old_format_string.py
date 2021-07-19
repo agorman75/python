@@ -15,4 +15,6 @@ count = 0
 if "john" not in name:
     name.append("john")
 for letter in name:
-    print(name)
+    print(letter)
+
+print(name)
