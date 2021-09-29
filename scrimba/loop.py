@@ -14,10 +14,10 @@ while num < 5:
 #     a = "*" * num
 #     print(f"{a}{num}.Loops are great{a}") 
 
-i=0
-while i < 5:
-    i+=1
-    print(f"{i}."+ "*"*i + "Loops are awesome" + "*"*i*2)
+# i=0
+# while i < 5:
+#     i+=1
+#     print(f"{i}."+ "*"*i + "Loops are awesome" + "*"*i*2)
     
 # Three Loop Questions:
 #1. What do I want to repeat?

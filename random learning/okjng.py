@@ -10,4 +10,4 @@ def enter_file_name():
     for i in list_of_files:
         print(i)
 
-enter_file_name(files)
+enter_file_name()

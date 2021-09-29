@@ -6,7 +6,7 @@ count = 1
 
 while count < 3:
     count += 1
-    names.insert(input("Add two names list: "), -1)
+    names.append(input("Add two names list: "))
 for x in names:
     print(f"{x.capitalize()} ! You are invited to the party on Saturday.") 
 

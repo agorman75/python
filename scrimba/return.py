@@ -11,7 +11,7 @@ def tax_info(selection):
         nothing will be returned if no match found'''
     return switcher.get(selection, f"That tax option {selection} does not exist")
 
-n = float(round(input("Provide amount: "), 2))
+n = float(input("Provide amount: "))
 print("Selection are:\n1. Amount.\n2. Tax\n3. Total.\n")
 selection = input("Enter input number: ")
 # Print the output

@@ -1,6 +1,6 @@
 # msg ='Welcome to Python 101: Split and Join'
 # csv = 'Eric,John,Michael,Terry,Graham'
-friends_list = ['Eric','John','Michael','Terry','Graham']
+# friends_list = ['Eric','John','Michael','Terry','Graham']
 # print(msg.split())
 # print(csv.split(','))
 # print(str(friends_list))
@@ -19,9 +19,9 @@ friends_list = ['Eric','John','Michael','Terry','Graham']
 # # use print() statements to work your way through the exercise
 
 # # Above becomes:
-csv = 'Eric,John,Michael,Terry,Graham:TerryG;Brian'
+# csv = 'Eric,John,Michael,Terry,Graham:TerryG;Brian'
 
-friends_list = (','.join(','.join(csv.split(';')).split(':'))).split(',')
+# friends_list = (','.join(','.join(csv.split(';')).split(':'))).split(',')
 # print(friends_list)
 # print('replace', csv.replace(';',',').replace(':',',').split(','))
-print(friends_list)
+# print(friends_list)

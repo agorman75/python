@@ -7,6 +7,6 @@ def num_days(month):
         days = 28
     print('number of days in',month,'is',days)
     
-num_days('easghe')
+num_days('jan')
 # optimize/shorten the code in the function
 # try to reduce the number of conditionals 

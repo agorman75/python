@@ -12,6 +12,7 @@ print(friends_set.difference(my_friends_set)) # search result that are different
 print(friends_set.union(my_friends_set)) # search result that has a set of names in all of the sets that have no duplicates
 
 #Sets - blazingly fast unordered Lists 
+
 #empty Lists
 empty_list = []
 empyt_list = list()

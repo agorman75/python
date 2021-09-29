@@ -16,10 +16,3 @@ greeting(name, age, color)
 #  adding 1 to the age
 # 5. Capitalize first letter of the 'name', and rest are small caps 
 # 6. Favorite color should be in lowercase 
-
-def friends(friend):
-    for x in range(friend):
-        print(x)
-
-friend = ['andrew', 'josh', 'john', 'ted']
-friends(list)

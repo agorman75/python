@@ -78,8 +78,9 @@
 
 
 def near_ten(num):
-    return num % 10
-
+    if num % 10 in range(0,3) or num % 10 in range(8,10):
+        return True
+    return False
 
 
 print(near_ten(12))# → True

@@ -46,6 +46,7 @@ abc = [(letter, num) for letter in 'abcde' for num in range(4)]
 print(abc)
 
 
+
 A = [1,3,5,7]
 B = [2,4,6,8]
 c = [(a, b) for a in A for b in B]
@@ -59,5 +60,3 @@ def new1():
     return [int(num) for num in numbers if num > 0]
 print(new1())
 
-new_list = [(letter,num) for letter in'spam' for num in range(4)]
-print(new_list)
