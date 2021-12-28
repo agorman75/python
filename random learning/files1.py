@@ -2,7 +2,7 @@
 import os, sys
 
 # Set the directory path
-path = input("Provide path. Must include '\\' at the end.\n")
+path = input("Provide path. \n")
 
 # Read the content of the file
 files = os.listdir(path)
@@ -10,9 +10,9 @@ files = os.listdir(path)
 # Print the content of the directory
 def dirz():
     for file in files:
-        if file.endswith(".docx"):
+        if file.endswith(".txt"):
             new_folder = input("Name of new folder\n")
-            new1 = path + new_folder
+            new1 = path + "\\" + new_folder
             os.mkdir(new1)
             print(f"{new1}")
 
