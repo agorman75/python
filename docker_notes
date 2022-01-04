@@ -1,0 +1,419 @@
+DOCKER
+
+______________________________________________________________________
+______________________________________________________________________
+
+- Docker containers share the underlining kernal
+- Containers are meant to run a specific task or process -- example: run a database. The container runs only as long as the process inside the container is running.
+If the container stops or crashes, then the container exits. Another example is 'docker run ubuntu'. The container will run the OS, but stop almost immeidately because
+the purpose is to boot up the image, therefore the task is complete. However, it will last longer if other commands were added: 'docker run ubuntu sleep 5'. The container
+will sleep until the 5 seconds task is complete, then the container exits.
+-
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER BASIC COMMANDS
+
+
+Remove an image:
+	docker rmi [image ID]
+
+Remove a container:
+	docker rm [container ID]
+
+	To stop all running containers:
+		docker stop $(docker ps)
+
+	To delete all containers:
+		docker rm $(docker ps -a)
+
+Run docker container in the background:
+	docker run -d [container ID or image name]
+
+Pull the image downloads the image, but does not run:
+	docker pull [image]
+
+To stop a docker image:
+	docker stop [name or container ID]
+
+List docker containers which are running:
+	docker ps
+
+List all docker containers:
+	docker ps -a 
+
+Get a sum count of how many images or containers, but need to -1 off the count:
+	docker ps | wc -l
+	docker images | wc -1
+
+List the size of docker containers:
+	docker ps -s
+
+Apply a filter to a docker command:
+	docker ps -a -f status=exited
+
+	docker ps -f ancestor=ubuntu
+
+List docker images:
+	docker images
+
+Delete docker image (you must make sure no containers are running that image before running the below command):
+	docker rmi nginx
+
+To attach to a docker container:
+	docker ps (to get the ID of the container)
+	docker attach [ID of container] (note! You don't have to provide the entire ID. You can provide the first 5 characters of the ID or enough characters to distinguish ID's.
+		exmaple: one ID is 2456245 and the other is 245624012. You will have to provide up to 2456240)
+
+Run a docker container with interactive mode:
+	docker run -i [image]
+
+	If you need further interaction, use the t command along with i -- interactive terminal:
+		docker run -it [image]
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+PORT MAPPING -- Cannot map to the same port on the docker host more than once
+
+Docker hosts have their own private network. Therefore, if a developer needed to access the docker container the docker admin will have to make that private docker
+network available to the dev team. The following docker command was ran to load up the web app: docker run kodekloud/webapp --> 'running on http://0.0.0.0:5000/'
+
+Corporate network: 192.168.1.0
+Docker host IP (is on the corprate network and employees can access this host): 192.168.1.5
+Docker container network: 172.17.0.0
+Docker container IP and port: 172.17.0.2:5000 (port 5000 was assigned by the docker host because that port was available and assigned to the container)
+
+To map a port to another port, invoke -p:
+	docker run -p 80:5000 kodekloud/webapp
+
+Now the dev team can access the container by visiting the IP and port: 192.168.1.5:80. Following the above the ip and port 172.17.0.2:5000 was mapped to 192.168.1.5:80. This 
+was you can map multiple web apps on the docker host by changing the corporate access port: docker run -p 8000:5000 kodekloud/webapp. Now the dev team will connect to 
+192.168.1.5:8000 as that is a different container.
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+VOLUME MAPPING
+
+In this example we will use the -v (volume) option to mount the volume outside of the container, but on the docker host to retain the data. If the container is deleted, the
+data will persist on the docker host.
+
+docker run -v /opt/datadir:/var/lib/mysql mysql
+
+The first part creats the directory /opt/datadir. The second part /var/lib/mysql which is supposed to be in the container instead becomes mounted with the -v option to the 
+local docker host. The data is now stored outside of the container.
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+INSPECTING CONTAINERS
+
+To inspect a container you can use the name:
+	docker inspect [container ID or name]
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+CONTAINER LOG
+
+To view the logs of the container:
+	docker logs [container name]
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+CONTAINERIZING AND CREATING DOCKER FILES
+
+Docker files must be written in a specific order in a layered architecture. FROM, RUN, COPY, ENTRYPOINT are all instructions. The following are arguments to the instructions. 
+All docker files must begin with a FROM instruction because an OS is required. 
+
+Create a file (example):
+
+_____
+FROM Ubuntu
+
+Run apt-get update && apt-get -y install python
+
+RUN pip install flask flask-mysql
+
+COPY . /opt/source-code
+
+ENTRYPOINT FLASK_APP=/opt/sorce-code/app.py flask run
+_____
+
+
+The docker command to run the above docker file:
+	docker build . -f Dockerfile -t agorman/my-custom-app
+
+
+The following will occur:
+1. OS - Ubuntu
+2. Update apt repo
+3. Install dependencies using apt
+4. Install Python dependencies using pip
+5. Copy sorce code to /opt folder
+6. Run the web server using "flask" command
+
+Once docker builds the image:
+	docker push agorman/my-custom-app
+
+You can check out the history of what is installed on the image by:
+	docker history [image]
+
+To build your own image:
+	1. Create a Dockerfile
+	2. (OPTIONAL) create a script
+	3. Use the command:
+		docker build . -t [you add a tag, aka image name]
+	4. docker run [image name from step 3]
+
+To push an image to docker hub:
+	1. Create an account on hub.docker.com
+	2. On the server run:
+		docker login
+	3. Docker push [image]
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+ENVIRONMENT VARIABLES
+
+When you inspect a container or image the environment variables will be listed under config > env. To invoke the command:
+	docker run -e APP_COLOR=blue [image]
+
+Another example:
+	docker run --name mysql-db -e MYSQL_ROOT_PASSWORD=db_pass123 mysql
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+COMMANDS, ARGUMENTS, ENTRYPOINTS
+
+Sometimes entrypoint and cmd are needed together. Example:
+	entrypoint ["sleep"]
+
+	CMD ["30"]
+
+	When the image starts the entrypoint and command are 'sleep 30'
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER COMPOSE
+
+Rather than running multiple lines to do certain tasks, this can all be done with a .yaml file:
+
+Without docker compose:
+
+docker run agorman/simple-webapp
+docker run mongodb
+docker run redis:alpine
+docker run ansible
+
+With docker compose -- create a yaml file:
+
+services:
+	web:
+		image: "agorman/simple-webapp"
+	database:
+		image: "mongodb"
+	messaging:
+		image: "redis:alpine"
+	orchestration:
+		image: "ansible"
+
+Invoke the docker-compose up command
+_____
+
+
+Sample application -- voting application
+
+Workflow = voting-app > in-memory DB > worker > DB > result-app
+
+	Voting app is developed in python which provides an interface to select between two options. After the vote has been cast the data is stored in redis DB (in-memory).
+	The work is then procesed by the worker application takes the data and updates the DB as persistent data. The DB in this case is postgreSQL where the table will be updated.
+	This will increment the votes (data). The data will be displayed to the use from the results-app.
+
+_____
+
+Docker commands writen down:
+
+docker run -d --name=redis redis
+docker run -d --name=db postgres:9.4
+docker run -d --name=vote -p 5000:80 --link redis:redis voting-app
+docker run -d --name=result -p 5001:80 --link db:db result-app
+docker run -d --name=worker --link db:db --link redis:redis worker
+
+To summarize the above in a docker composed yaml file (can also use build rather than image):
+
+version: 3
+services:
+	redis:
+		image: redis
+	db:
+		image: postgres:9.4
+	vote:
+		image: example-voting-app-vote
+		ports:
+			- 5000:80
+		links:
+			- redis
+	result:
+		image: docker/example-voting-app-result
+		ports:
+			- 5001:80
+		links:
+			- db
+	worker:
+		images: dockersamples/worker
+		links:
+			- redis
+			- db
+
+Can also add networks:
+
+networks:
+	front-end:
+	back-end:
+
+
+Example:
+
+version: '3.0' 
+services:
+    redis:
+        image: redis:alpine
+    clickcounter:
+        image: kodekloud/click-counter
+        ports:
+            - 8085:5000
+
+
+Another example:
+
+version: "3.0"
+services:
+    Jenkins:
+        image: jenkins/jenkins:lts
+        container_name: andrew_jenkins
+        ports:
+            -
+                8080:8080
+        volumes:
+            -
+        		/home/agorman/jenkins_container:/var/jenkins_home
+
+If Jenkins cannot run, then the Jenkins user (UID 1000) need to have permission to the local volume it will write to: sudo chown -R 1000 [volume_dir]   In this case volume_dir = /home/agorman/jenkins_container
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER REGISTRY
+
+Some images require a user ID. By default when pulling images, the user account and image are often the same. Such as docker run nginx. By default dokcer assumes the user ID and image is nginx/nginx. 
+
+PRIVATE REGISTRY
+
+If you work for a company that hosts their own docker registery, to access the containers you must first log in: docker login private-registery.io. Once logged in a user ID will be required to run containers
+because you are given access to. In this case to run a container: docker run private-registry.io/apps/internal-app. If you do not log in and try to run/pull the image you will recieve an error saying the image
+cannot be found.
+
+DEPLOY PRIVATE REGISTRY
+
+	docker run -d -p 5000:5000 --name registry registry:2
+
+To push your own image to the private registry that was just spun up:
+	docker image tag my-image localhost:5000/my-image
+	docker push localhost:5000/my-image
+
+Now this image can be pulled:
+	docker pull localhost:5000/my-image
+	docker pull 192.168.56.100:5000/my-image
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER ENGINE
+
+Consists of three component:
+	- Docker CLI = Docker CLI to perform actions such as running containers, pulling images, etc
+	- REST API = interface which communicates to the deamon to provide intstructiions
+	- Docker deamon = background process that manages images, containers, volumes, and networks
+
+The Docker CLI could be on a remote host, such as a laptop. Invoke the remote command to connect to the docker host to have access to the docker engine:
+	docker -H=remote-docker-engine:2375
+
+	Example:
+	docker -H=10.123.2.1:2375 run nginx
+
+NAMESPACE PROCESS ID
+
+The PID of a process running on a container will also be on the docker host. On the host the PID could be 505 while on the child system (container) the PID can be 10. 
+
+CONTROL GROUPS 
+
+By default there is no limitation to how many resources containers can consume. A container may take all of the available resources if pushed hard enough. Cgroups can be used to restrict the amount of hardware 
+resources allocated to each containers. In a run command you can use the following hardware commands to restrict each container:
+
+	docker run --cpus=.5 ubuntu
+	docker run --memory=100m ubuntu
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER STORAGE
+
+When docker is installed, docker creates a file system by default in /var/lib/docker which also contains the folders aufs, containers, image, volumes. 
+
+______________________________________________________________________
+______________________________________________________________________
+
+
+DOCKER NETWORKING
+
+When you install docker, 3 networks are created:
+	1. Bridge - private internal network created by docker on the host. All containers use the bridge network by default. The containers receive an ip on the 172.17.0.0 network. Containers can access other containers 
+	using the internal IP. To access any container from the outside word, ports must be mapped. Another way to access the containers externally is to attach the container to the host network (#3). 
+	2. None - containers are not attached to any network and has no access to the external network or other containers as this is ran in an isolated network.  
+	3. Host - when containers are on this network, there is no network separation between the docker host and the container. If a container was ran on the host network, port mapping would not be needed to access the 
+	container since the container uses the host network. The caveate here is you cannot have multiple containers use the same port on the same host as the ports are now shared with the host. 
+
+By default docker only creates one internal bridge network (172.17.0.0). Containers on the same network can reach each other by using their hostnames as DNS is embedded on the docker host. The docker host updates its
+own internal DNS with each newly created docker container. In other words, docker uses network namespaces which creates a separate namespace per container. It then uses virtual ethernet pairs to connect containers together.
+
+To create a second network bridge:
+	docker network create \
+		--driver bridge \
+		--subnet 182.18.0.0/16
+		custom-isolated-network
+
+	Another example:
+	docker network create --driver=bridge --subnet=182.18.0.1/24 --gateway=182.18.0.1 wp-mysql-network
+
+	docker run -d --name=webapp -p 38080:8080 -e DB_Host=mysql-db -e DB_Password=db_password123 --link mysql-db:mysql-db --network=wp-mysql-network kodekloud/simple-webapp-mysql
+
+To view all docker networks:
+	docker network ls
+
+To inspect networks:
+	docker inspect [id or name of container]
+		Then look under "bridge", that will list the IP addres
+
+______________________________________________________________________
+______________________________________________________________________
+
+

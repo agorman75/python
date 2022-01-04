@@ -1,0 +1,10 @@
+KUBERNETES
+
+______________________________________________________________________
+______________________________________________________________________
+
+Container orchestration - There are three prominent orchestration technologies at the moment: 1. Docker swarm from Docker. 2. Kubernetes from Google. 3. Mesos from Apache. These technologies can auto-scale up or down depending on the load. In other words auto-manages spinning up a container(s) or destroying a container(s). 
+
+	1. Docker swarm is much simplier to configure, but lacks complicated features.
+	3. Kubernetes is difficult to set up, but provides the most options and can support advanced architectures. 
+	2. Mesos is difficult to configure, but offers the most advanced features.
