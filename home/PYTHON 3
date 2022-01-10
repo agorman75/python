@@ -28,7 +28,7 @@ None is to be used to store in a variable that doesn't have an initial value, bu
 
 _________________________________________________________________________________________________________
 DATA TYPES (so far):
-bool 	= 	True or Falserefgbhnty
+bool 	= 	True or False
 str 	= 	a sequence of unicode characters "Andrew"
 list	=	an ordered sequence of values of other data types [1,2,3] or ["a","b","c"]
 dict	=	a collection of key: values {"first_name": "Andrew", "last_name": "Gorman"}
@@ -83,6 +83,9 @@ f-string turns a value into a string. Can interpolate an integer as a string.
 
 _________________________________________________________________________________________________________
 STRINGS AND INDEXES:
+
+	string[start:stop:step]
+
 	"lol"[0] = 'l'
 	name = "Chuck"
 	name[0] = C
@@ -94,9 +97,6 @@ CONVERTING DATA TYPES:
 Can explicitly convert variables by using the name of the built in type as a function.
 	d = 12.435334
 	integer = int(d) = 12
-
-	my_list = [1,2,3]
-	my_list_as_a_string = str(my_list) = "[1,2,3]"
 
 _________________________________________________________________________________________________________
 USER DATA:
@@ -279,6 +279,10 @@ ________________________________________________________________________________
 RANGES:
 Commonly used for looping a specific number of times in 'for' loops.
 
+To print a range =
+	the_range = range(1,5)
+	print(list(the_range))
+
 Syntax - range(start,stop,step)
 
 	range(7) = 0 through 6
@@ -311,6 +315,7 @@ The below example is a continuous loop, but the loops breaks with the "break" ex
 _________________________________________________________________________________________________________
 LISTS:
 List is a collection or grouping of items. lists = []
+Format is list_name.method()
 The first item in a list is position 0 aka index0
 
 	numbers = [1,2,3,4]

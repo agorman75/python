@@ -9,6 +9,9 @@ for num, friend in enumerate(friends,1):
     print(num, friend)
 
 
+import datetime
+from datetime import datetime, date
+print(datetime.today().strftime('%d-%m-%Y'))
 
 # print('python101 - Enumerate')
 # friends = ['Brian', 'Judith', 'Reg', 'Loretta', 'Colin']
