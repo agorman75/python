@@ -279,7 +279,7 @@ ________________________________________________________________________________
 RANGES:
 Commonly used for looping a specific number of times in 'for' loops.
 
-To print a range =
+To print a range:
 	the_range = range(1,5)
 	print(list(the_range))
 
