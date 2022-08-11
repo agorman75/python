@@ -12,3 +12,4 @@ for line in f:
 f.close()
 passFile.close()
 failFile.close()
+
